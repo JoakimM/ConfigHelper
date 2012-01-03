@@ -2,7 +2,6 @@ ConfigHelper enables to you easily save and load data from a .config or .xml fil
 
 An example configuration class:
 
-`
     public class MyConfiguration {
         private readonly string _configName;
         private readonly string _configPath;
@@ -23,22 +22,20 @@ An example configuration class:
             ConfigSettings.LoadXmlConfig(this, _configName, _configPath);
         }
     }
-`
 
 any properties marked with the attribute `[IsSetting]` will be saved to the desired configuration file, in this case it will be an xml file.
 
 Example usage:
 
-`
     var config = new MyConfiguration("configuration", Server.MapPath("~/")) { 
         MyString = "TestString",
         MyDouble = 32.53,
         MyPoints = new [] { new Point(0,0), new Point(100,100) }
     };
-    config.Save();
+    config.Save(); //this will have saved the values and created a file called "configuration.xml" in the root directory
+    //we empty everything
     config.MyString = "";
     config.MyDouble = 0;
     config.MyPoints = new Points[]{};
-    config.Load();
-    Assert.AreEqual(config.MyString, "TestString");
-`
+    config.Load(); //we then load all the values from the file to show that it works
+    
