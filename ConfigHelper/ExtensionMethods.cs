@@ -10,7 +10,7 @@ namespace ConfigHelper
      * adding values and removing values 
     */
 
-    internal class XmlConfiguration
+    public class XmlConfiguration
     {
         public readonly XmlDocument XmlDocument;
         public readonly string XmlDocumentFullPathName;
@@ -32,7 +32,7 @@ namespace ConfigHelper
         }
     }
 
-    internal class XmlAppSettingsSection
+    public class XmlAppSettingsSection
     {
         public readonly XmlConfiguration OwnerDocument;
         public readonly XmlElement OriginalXmlElement;
@@ -56,7 +56,7 @@ namespace ConfigHelper
         }
     }
 
-    internal class KeyValueXmlConfigurationCollection {
+    public class KeyValueXmlConfigurationCollection {
         private readonly XmlAppSettingsSection _xmlAppSettings;
         private readonly KeyValueConfigurationCollection _originalCollection;
         public KeyValueXmlConfigurationCollection(XmlAppSettingsSection xmlAppSettings, KeyValueConfigurationCollection collection) {
@@ -109,7 +109,7 @@ namespace ConfigHelper
         }
     }
 
-    internal static class ConfigurationExtensions {
+    internal static class KeyValueConfigurationCollectionExtensions {
         public static void RemoveSimilar(this KeyValueConfigurationCollection appSettingsCollection, string key) {
             var nameList = new List<string>();
             nameList.AddRange(appSettingsCollection.AllKeys);

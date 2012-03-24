@@ -44,11 +44,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppConfig.cs" />
     <Compile Include="ConfigSettings.cs" />
     <Compile Include="ConvertArgumentException.cs" />
-    <Compile Include="IsSetting.cs" />
+    <Compile Include="CustomConfig.cs" />
+    <Compile Include="Interfaces\IBaseConfigType.cs" />
+    <Compile Include="Interfaces\IConfigSettings.cs" />
+    <Compile Include="Interfaces\IConfigType.cs" />
+    <Compile Include="Interfaces\IsSetting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="XmlConfiguration.cs" />
+    <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="WebConfig.cs" />
+    <Compile Include="XmlConfig.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
