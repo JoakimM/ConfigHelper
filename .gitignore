@@ -1,0 +1,7 @@
+# git ignore file
+ConfigHelper/obj
+ConfigHelper/bin
+_ReSharper.ConfigHelper/
+ConfigHelper.sln.DotSettings.user
+ConfigHelper.6.1.ReSharper.user
+ConfigHelper.suo.orig
