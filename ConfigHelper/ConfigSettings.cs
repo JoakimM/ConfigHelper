@@ -6,7 +6,8 @@ using System.Linq;
 using System.Management.Instrumentation;
 using System.Reflection;
 
-namespace ConfigHelper {
+namespace ConfigHelper
+{
     //TODO: See if more name changes should be done
 
     /// <summary>
@@ -86,9 +87,15 @@ namespace ConfigHelper {
         {
             TypeConvertAndLoad(obj,
                                (property, targetType, typeConverter) =>
-                               property.SetValue(obj,
-                                                 typeConverter.ConvertFromString(
-                                                     config.AppSettings.Settings[property.Name].Value), null),
+                               {
+                                   var text = getValue(config, property);
+
+                                   if (string.IsNullOrEmpty(text))
+                                       return;
+
+                                   var value = typeConverter.ConvertFromString(text);
+                                   property.SetValue(obj, value, null);
+                               },
                                (strList, index, property) =>
                                {
                                    var key =
@@ -101,8 +108,14 @@ namespace ConfigHelper {
                                });
         }
 
+        private static string getValue(XmlConfiguration config, PropertyInfo property)
+        {
+            var element = config.AppSettings.Settings[property.Name];
+            return element == null ? string.Empty : element.Value;
+        }
+
         private void TypeConvertAndLoad(object obj, Action<PropertyInfo, Type, TypeConverter> loadPropertyToObj,
-            Action<List<string>, int, PropertyInfo> loadArrayPropertyToStrArray)
+              Action<List<string>, int, PropertyInfo> loadArrayPropertyToStrArray)
         {
             TypeConvert(obj,
                        (property, targetType, typeConverter) =>
@@ -231,6 +244,6 @@ namespace ConfigHelper {
                 if (saveConfig != null)
                     saveConfig();
             }
-        } 
+        }
     }
 }
